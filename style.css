@@ -183,20 +183,37 @@
 
 .block {
     margin: auto;
+
+    transform-style: preserve-3d;
+}
+
+.block .face {
+    background-color: rgb(67, 29, 50);
     height: 300px;
     width: 300px;
-    background-color: rgb(67, 29, 50);
+    backface-visibility: hidden;
+    transition: transform 0.5s ease-in-out;
+}
+
+.face.back {
+    transform: rotateY(180deg);
+    position: absolute;
+    top: 0;
+    left: 0;
 }
 
 .block:hover {
-    transform: rotate(90deg);
-    transition: 5;
+    transition: transform 0.5s ease-in-out;
 }
 
-@keyframes bounce {
-    0%   { transform: translateY(0); }
-    50%  { transform: translateY(-50px); }
-    100% { transform: translateY(0); }
+.block:hover .face.back {
+    transform: rotateY(0deg);
+    transition: 1s;
+}
+
+.block:hover .face.front {
+    transform: rotateY(180deg);
+    transition: 1s;
 }
 
 .contact-info {
